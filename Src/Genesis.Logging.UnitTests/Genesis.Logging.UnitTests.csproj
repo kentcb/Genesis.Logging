@@ -40,8 +40,9 @@
     <Compile Include="..\AssemblyInfoCommon.cs">
       <Link>Properties\AssemblyInfoCommon.cs</Link>
     </Compile>
+    <Compile Include="DefaultLoggerFixture.cs" />
+    <Compile Include="DefaultLoggerServiceFixture.cs" />
     <Compile Include="LoggerFixture.cs" />
-    <Compile Include="LoggerServiceFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

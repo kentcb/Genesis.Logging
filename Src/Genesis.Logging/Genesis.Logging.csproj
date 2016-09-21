@@ -57,6 +57,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LoggerExtensions.tt</DependentUpon>
     </Compile>
+    <Compile Include="DefaultLoggerService.cs" />
     <Compile Include="LoggerService.cs" />
     <Compile Include="LogLevel.cs" />
     <Compile Include="NullLoggerService.cs" />

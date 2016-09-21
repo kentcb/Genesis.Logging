@@ -5,19 +5,19 @@
     using System.Reactive.Linq;
     using Xunit;
 
-    public sealed class LoggerServiceFixture
+    public sealed class DefaultLoggerServiceFixture
     {
         [Fact]
         public void threshold_can_be_retrieved()
         {
-            var sut = new LoggerService();
+            var sut = new DefaultLoggerService();
             Assert.Equal(LogLevel.Debug, sut.Threshold);
         }
 
         [Fact]
         public void threshold_can_be_set()
         {
-            var sut = new LoggerService();
+            var sut = new DefaultLoggerService();
             sut.Threshold = LogLevel.Error;
             Assert.Equal(LogLevel.Error, sut.Threshold);
             sut.Threshold = LogLevel.Info;
@@ -29,7 +29,7 @@
         [Fact]
         public void threshold_determines_which_log_entries_tick()
         {
-            var sut = new LoggerService();
+            var sut = new DefaultLoggerService();
             var logger = sut.GetLogger(this.GetType());
             var entries = new List<LogEntry>();
             sut.Entries.Subscribe(entries.Add);
@@ -67,7 +67,7 @@
         [Fact]
         public void is_debug_enabled_returns_correct_value()
         {
-            var sut = new LoggerService();
+            var sut = new DefaultLoggerService();
 
             Assert.True(sut.IsDebugEnabled);
             sut.Threshold = LogLevel.Info;
@@ -77,7 +77,7 @@
         [Fact]
         public void is_info_enabled_returns_correct_value()
         {
-            var sut = new LoggerService();
+            var sut = new DefaultLoggerService();
 
             Assert.True(sut.IsInfoEnabled);
             sut.Threshold = LogLevel.Perf;
@@ -87,7 +87,7 @@
         [Fact]
         public void is_perf_enabled_returns_correct_value()
         {
-            var sut = new LoggerService();
+            var sut = new DefaultLoggerService();
 
             Assert.True(sut.IsPerfEnabled);
             sut.Threshold = LogLevel.Warn;
@@ -97,7 +97,7 @@
         [Fact]
         public void is_warn_enabled_returns_correct_value()
         {
-            var sut = new LoggerService();
+            var sut = new DefaultLoggerService();
 
             Assert.True(sut.IsWarnEnabled);
             sut.Threshold = LogLevel.Error;
@@ -107,7 +107,7 @@
         [Fact]
         public void is_error_enabled_always_returns_true()
         {
-            var sut = new LoggerService();
+            var sut = new DefaultLoggerService();
 
             Assert.True(sut.IsErrorEnabled);
             sut.Threshold = LogLevel.Error;
@@ -117,7 +117,7 @@
         [Fact]
         public void entries_is_not_null()
         {
-            var sut = new LoggerService();
+            var sut = new DefaultLoggerService();
 
             Assert.NotNull(sut.Entries);
         }
@@ -127,7 +127,7 @@
         [Fact]
         public void entries_ticks_for_every_log_entry()
         {
-            var sut = new LoggerService();
+            var sut = new DefaultLoggerService();
             var entries = new List<LogEntry>();
             sut.Entries.Subscribe(entries.Add);
             var logger1 = sut.GetLogger("First");
@@ -157,7 +157,7 @@
         [Fact]
         public void get_logger_for_type_returns_a_logger_with_the_full_name_of_the_type_passed_in()
         {
-            var sut = new LoggerService();
+            var sut = new DefaultLoggerService();
             var logger = sut.GetLogger(this.GetType());
 
             Assert.Equal(this.GetType().FullName, logger.Name);
@@ -166,7 +166,7 @@
         [Fact]
         public void get_logger_for_type_returns_the_same_logger_for_the_same_type()
         {
-            var sut = new LoggerService();
+            var sut = new DefaultLoggerService();
             var logger1 = sut.GetLogger(this.GetType());
             var logger2 = sut.GetLogger(this.GetType());
 
@@ -176,7 +176,7 @@
         [Fact]
         public void get_logger_by_name_returns_a_logger_with_the_specified_name()
         {
-            var sut = new LoggerService();
+            var sut = new DefaultLoggerService();
             var logger = sut.GetLogger("Some Logger");
 
             Assert.Equal("Some Logger", logger.Name);
@@ -185,7 +185,7 @@
         [Fact]
         public void get_logger_by_name_returns_the_same_logger_for_the_same_name()
         {
-            var sut = new LoggerService();
+            var sut = new DefaultLoggerService();
             var logger1 = sut.GetLogger("Name");
             var logger2 = sut.GetLogger("Name");
 

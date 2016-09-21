@@ -1,108 +1,73 @@
 ﻿namespace Genesis.Logging
 {
     using System;
-    using System.Collections.Generic;
-    using System.Reactive.Linq;
-    using System.Reactive.Subjects;
 
     /// <summary>
-    /// The default implementation of <see cref="ILoggerService"/>.
+    /// Provides a convenient ambient context and related members.
     /// </summary>
-    public sealed class LoggerService : ILoggerService
+    /// <remarks>
+    /// <para>
+    /// Since logging is a cross-cutting concern that rarely needs to be unit tested, an ambient context makes good sense. This
+    /// saves having to inject an <see cref="ILogger"/> instance (or <see cref="ILoggerService"/> instance) into components that
+    /// need to log. Instead, a single <see cref="ILoggerService"/> can be assigned to the <see cref="Current"/> ambient context,
+    /// and <see cref="ILogger"/> instances can be easily resolved via one of the <c>GetLogger</c> overloads.
+    /// </para>
+    /// </remarks>
+    public static class LoggerService
     {
-        private readonly IDictionary<string, ILogger> loggers;
-        private readonly ISubject<LogEntry> entries;
-        private LogLevel threshold;
+        private static ILoggerService current;
 
         /// <summary>
-        /// Creates a new instance of the <c>LoggerService</c> class.
+        /// Gets or sets the current <see cref="ILoggerService"/>.
         /// </summary>
-        public LoggerService()
+        public static ILoggerService Current
         {
-            this.loggers = new Dictionary<string, ILogger>();
-            this.entries = new Subject<LogEntry>();
-        }
-
-        /// <inheritdoc />
-        public LogLevel Threshold
-        {
-            get { return this.threshold; }
-            set { this.threshold = value; }
-        }
-
-        /// <inheritdoc />
-        public bool IsDebugEnabled => this.threshold <= LogLevel.Debug;
-
-        /// <inheritdoc />
-        public bool IsInfoEnabled => this.threshold <= LogLevel.Info;
-
-        /// <inheritdoc />
-        public bool IsPerfEnabled => this.threshold <= LogLevel.Perf;
-
-        /// <inheritdoc />
-        public bool IsWarnEnabled => this.threshold <= LogLevel.Warn;
-
-        /// <inheritdoc />
-        public bool IsErrorEnabled => this.threshold <= LogLevel.Error;
-
-        /// <inheritdoc />
-        public IObservable<LogEntry> Entries => this.entries.Where(x => x.Level >= this.Threshold);
-
-        /// <inheritdoc />
-        public ILogger GetLogger(Type forType)
-        {
-            if (forType.IsConstructedGenericType)
+            get
             {
-                forType = forType.GetGenericTypeDefinition();
-            }
+                var current = LoggerService.current;
 
-            return this.GetLogger(forType.FullName);
+                if (current == null)
+                {
+                    throw new InvalidOperationException("You must assign an ILoggerService to LoggerService.Current before it can be retrieved.");
+                }
+
+                return current;
+            }
+            set { current = value; }
         }
 
-        /// <inheritdoc />
-        public ILogger GetLogger(string name)
-        {
-            ILogger logger;
+        /// <summary>
+        /// Gets a logger with the given name.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// This is a convenience method that is equivalent to calling <c>Current.GetLogger(string)</c>.
+        /// </para>
+        /// </remarks>
+        /// <param name="name">
+        /// The logger name.
+        /// </param>
+        /// <returns>
+        /// The logger.
+        /// </returns>
+        public static ILogger GetLogger(string name) =>
+            Current.GetLogger(name);
 
-            // There is a race condition here, but we don't care enough to synchronize access. It just means we may end up
-            // with more than one Logger instance with the same name, but it doesn't matter.
-            if (!this.loggers.TryGetValue(name, out logger))
-            {
-                logger = new Logger(this, name);
-                this.loggers[name] = logger;
-            }
-
-            return logger;
-        }
-
-        private sealed class Logger : ILogger
-        {
-            private readonly LoggerService owner;
-            private readonly string name;
-
-            public Logger(LoggerService owner, string name)
-            {
-                this.owner = owner;
-                this.name = name;
-            }
-
-            public string Name => this.name;
-
-            public bool IsDebugEnabled => this.owner.IsDebugEnabled;
-
-            public bool IsInfoEnabled => this.owner.IsInfoEnabled;
-
-            public bool IsPerfEnabled => this.owner.IsPerfEnabled;
-
-            public bool IsWarnEnabled => this.owner.IsWarnEnabled;
-
-            public bool IsErrorEnabled => this.owner.IsErrorEnabled;
-
-            public void Log(LogLevel level, string message)
-            {
-                var entry = new LogEntry(DateTime.UtcNow, this.name, level, Environment.CurrentManagedThreadId, message);
-                this.owner.entries.OnNext(entry);
-            }
-        }
+        /// <summary>
+        /// Gets a logger for the given type.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// This is a convenience method that is equivalent to calling <c>Current.GetLogger(Type)</c>.
+        /// </para>
+        /// </remarks>
+        /// <param name="forType">
+        /// The logger type.
+        /// </param>
+        /// <returns>
+        /// The logger.
+        /// </returns>
+        public static ILogger GetLogger(Type forType) =>
+            Current.GetLogger(forType);
     }
 }

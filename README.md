@@ -34,9 +34,11 @@ Install-Package Genesis.Logging
 
 ## How?
 
-Generally, your components would normally depend on `ILogger`. Implementations of `ILogger` can be obtained from an `ILoggerService`. **Genesis.Logging** comes with two implementations of `ILoggerService`:
+Generally, your components would normally depend on `ILogger`. Implementations of `ILogger` can be obtained from an `ILoggerService`. For convenience (and because logging rarely needs to be unit tested), an ambient context is available via `LoggingService.Current`. By assigning an `ILoggerService` to this property, your application components can then obtain an `ILogger` simply by calling one of the static `LoggerService.GetLogger` methods.
 
-* `LoggerService` : this is the default implementation that you will generally want to use.
+**Genesis.Logging** comes with two implementations of `ILoggerService`:
+
+* `DefaultLoggerService` : this is the default implementation that you will generally want to use.
 * `NullLoggerService` : this is an implementation that does absolutely nothing.
 
 Once you have an `ILogger`, logging against it is easy:
