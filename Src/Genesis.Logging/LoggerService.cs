@@ -15,7 +15,7 @@
     /// </remarks>
     public static class LoggerService
     {
-        private static ILoggerService current;
+        private static ILoggerService current = new NullLoggerService();
 
         /// <summary>
         /// Gets or sets the current <see cref="ILoggerService"/>.
