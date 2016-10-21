@@ -107,7 +107,7 @@ Target "CreateArchives" (fun _ ->
 Target "CreateNuGetPackages" (fun _ ->
     // copy files required in the NuGet
     !! (srcDir @@ projectName + "/bin" @@ configuration @@ projectName + ".*")
-        |> CopyFiles (nugetDir @@ projectName + "/lib/portable+net45+netcoreapp+win8+wpa8.1+wp8+monoandroid403+xamarinios10")
+        |> CopyFiles (nugetDir @@ projectName + "/lib/portable+net45+netcoreapp+win8+wpa8.1+wp8+monoandroid403+xamarinios10+uap")
 
     // copy source
     let sourceFiles =
