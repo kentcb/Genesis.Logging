@@ -1,22 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.1;net452</TargetFrameworks>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <DefineConstants>LOGGING;$(DefineConstants)</DefineConstants>
+    <TargetFramework>netstandard1.1</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Include="..\AssemblyInfoCommon.cs" Link="AssemblyInfoCommon.cs" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="xunit" Version="2.3.0-beta1-build3642" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Genesis.Logging\Genesis.Logging.csproj" />
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.0-beta1-build3642" />
   </ItemGroup>
-
 </Project>
