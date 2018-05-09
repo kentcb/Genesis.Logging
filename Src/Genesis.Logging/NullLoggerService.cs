@@ -17,6 +17,11 @@
         /// <summary>
         /// Always return <see langword="false"/>.
         /// </summary>
+        public bool IsVerboseEnabled => false;
+        
+        /// <summary>
+        /// Always return <see langword="false"/>.
+        /// </summary>
         public bool IsDebugEnabled => false;
 
         /// <summary>
@@ -102,6 +107,8 @@
             {
             }
 
+            public bool IsVerboseEnabled => false;
+            
             public bool IsDebugEnabled => false;
 
             public bool IsErrorEnabled => false;

@@ -31,6 +31,9 @@
         }
 
         /// <inheritdoc />
+        public bool IsVerboseEnabled => this.threshold <= LogLevel.Verbose;
+
+        /// <inheritdoc />
         public bool IsDebugEnabled => this.threshold <= LogLevel.Debug;
 
         /// <inheritdoc />
@@ -87,6 +90,8 @@
             }
 
             public string Name => this.name;
+
+            public bool IsVerboseEnabled => this.owner.IsVerboseEnabled;
 
             public bool IsDebugEnabled => this.owner.IsDebugEnabled;
 
