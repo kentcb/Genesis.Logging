@@ -31,6 +31,747 @@ namespace Genesis.Logging
     public static class LoggerExtensions
     {
 		/// <summary>
+		/// Outputs a message with level verbose to the log.
+		/// </summary>
+		/// <param name="this">
+		/// The <see cref="ILogger"/> against which to log.
+		/// </param>
+		/// <param name="message">
+		/// The message.
+		/// </param>
+		[Conditional("LOGGING")]
+		public static void Verbose(this ILogger @this, string message)
+		{
+			if (!@this.IsVerboseEnabled)
+			{
+				return;
+			}
+
+			@this.Log(LogLevel.Verbose, message);
+		}
+
+		/// <summary>
+		/// Outputs a message with level verbose to the log.
+		/// </summary>
+		/// <param name="this">
+		/// The <see cref="ILogger"/> against which to log.
+		/// </param>
+		/// <param name="format">
+		/// The format for the message.
+		/// </param>
+		/// <param name="args">
+		/// Arguments to be substituted into <paramref name="format"/>.
+		/// </param>
+		[Conditional("LOGGING")]
+		public static void Verbose(this ILogger @this, string format, params object[] args)
+		{
+			if (!@this.IsVerboseEnabled)
+			{
+				return;
+			}
+
+			var message = string.Format(CultureInfo.InvariantCulture, format, args);
+			@this.Log(LogLevel.Verbose, message);
+		}
+
+		/// <summary>
+		/// Outputs a message with level verbose to the log, along with the details of an exception.
+		/// </summary>
+		/// <param name="this">
+		/// The <see cref="ILogger"/> against which to log.
+		/// </param>
+		/// <param name="exception">
+		/// The exception to include in the output.
+		/// </param>
+		/// <param name="format">
+		/// The format for the message.
+		/// </param>
+		/// <param name="args">
+		/// Arguments to be substituted into <paramref name="format"/>.
+		/// </param>
+		[Conditional("LOGGING")]
+		public static void Verbose(this ILogger @this, Exception exception, string format, params object[] args)
+		{
+			if (!@this.IsVerboseEnabled)
+			{
+				return;
+			}
+
+			var message = string.Format(CultureInfo.InvariantCulture, format, args) + exception;
+			@this.Log(LogLevel.Verbose, message);
+		}
+
+		/// <summary>
+		/// Outputs a message with level verbose to the log.
+		/// </summary>
+		/// <typeparam name="T0">The type of parameter T0.</typeparam>
+		/// <param name="this">
+		/// The <see cref="ILogger"/> against which to log.
+		/// </param>
+		/// <param name="format">
+		/// The format of the message.
+		/// </param>
+		/// <param name="arg0">Argument 0.</param>
+		[Conditional("LOGGING")]
+		public static void Verbose<T0>(this ILogger @this, string format, T0 arg0)
+		{
+			if (!@this.IsVerboseEnabled)
+			{
+				return;
+			}
+
+			var message = string.Format(CultureInfo.InvariantCulture, format, arg0);
+			@this.Log(LogLevel.Verbose, message);
+		}
+
+		/// <summary>
+		/// Outputs a message with level verbose to the log, along with the details of an exception.
+		/// </summary>
+		/// <typeparam name="T0">The type of parameter T0.</typeparam>
+		/// <param name="this">
+		/// The <see cref="ILogger"/> against which to log.
+		/// </param>
+		/// <param name="exception">
+		/// The exception to include in the output.
+		/// </param>
+		/// <param name="format">
+		/// The format of the message.
+		/// </param>
+		/// <param name="arg0">Argument 0.</param>
+		[Conditional("LOGGING")]
+		public static void Verbose<T0>(this ILogger @this, Exception exception, string format, T0 arg0)
+		{
+			if (!@this.IsVerboseEnabled)
+			{
+				return;
+			}
+
+			var message = string.Format(CultureInfo.InvariantCulture, format, arg0) + exception;
+			@this.Log(LogLevel.Verbose, message);
+		}
+
+		/// <summary>
+		/// Outputs a message with level verbose to the log.
+		/// </summary>
+		/// <typeparam name="T0">The type of parameter T0.</typeparam>
+/// <typeparam name="T1">The type of parameter T1.</typeparam>
+		/// <param name="this">
+		/// The <see cref="ILogger"/> against which to log.
+		/// </param>
+		/// <param name="format">
+		/// The format of the message.
+		/// </param>
+		/// <param name="arg0">Argument 0.</param>
+/// <param name="arg1">Argument 1.</param>
+		[Conditional("LOGGING")]
+		public static void Verbose<T0, T1>(this ILogger @this, string format, T0 arg0, T1 arg1)
+		{
+			if (!@this.IsVerboseEnabled)
+			{
+				return;
+			}
+
+			var message = string.Format(CultureInfo.InvariantCulture, format, arg0, arg1);
+			@this.Log(LogLevel.Verbose, message);
+		}
+
+		/// <summary>
+		/// Outputs a message with level verbose to the log, along with the details of an exception.
+		/// </summary>
+		/// <typeparam name="T0">The type of parameter T0.</typeparam>
+/// <typeparam name="T1">The type of parameter T1.</typeparam>
+		/// <param name="this">
+		/// The <see cref="ILogger"/> against which to log.
+		/// </param>
+		/// <param name="exception">
+		/// The exception to include in the output.
+		/// </param>
+		/// <param name="format">
+		/// The format of the message.
+		/// </param>
+		/// <param name="arg0">Argument 0.</param>
+/// <param name="arg1">Argument 1.</param>
+		[Conditional("LOGGING")]
+		public static void Verbose<T0, T1>(this ILogger @this, Exception exception, string format, T0 arg0, T1 arg1)
+		{
+			if (!@this.IsVerboseEnabled)
+			{
+				return;
+			}
+
+			var message = string.Format(CultureInfo.InvariantCulture, format, arg0, arg1) + exception;
+			@this.Log(LogLevel.Verbose, message);
+		}
+
+		/// <summary>
+		/// Outputs a message with level verbose to the log.
+		/// </summary>
+		/// <typeparam name="T0">The type of parameter T0.</typeparam>
+/// <typeparam name="T1">The type of parameter T1.</typeparam>
+/// <typeparam name="T2">The type of parameter T2.</typeparam>
+		/// <param name="this">
+		/// The <see cref="ILogger"/> against which to log.
+		/// </param>
+		/// <param name="format">
+		/// The format of the message.
+		/// </param>
+		/// <param name="arg0">Argument 0.</param>
+/// <param name="arg1">Argument 1.</param>
+/// <param name="arg2">Argument 2.</param>
+		[Conditional("LOGGING")]
+		public static void Verbose<T0, T1, T2>(this ILogger @this, string format, T0 arg0, T1 arg1, T2 arg2)
+		{
+			if (!@this.IsVerboseEnabled)
+			{
+				return;
+			}
+
+			var message = string.Format(CultureInfo.InvariantCulture, format, arg0, arg1, arg2);
+			@this.Log(LogLevel.Verbose, message);
+		}
+
+		/// <summary>
+		/// Outputs a message with level verbose to the log, along with the details of an exception.
+		/// </summary>
+		/// <typeparam name="T0">The type of parameter T0.</typeparam>
+/// <typeparam name="T1">The type of parameter T1.</typeparam>
+/// <typeparam name="T2">The type of parameter T2.</typeparam>
+		/// <param name="this">
+		/// The <see cref="ILogger"/> against which to log.
+		/// </param>
+		/// <param name="exception">
+		/// The exception to include in the output.
+		/// </param>
+		/// <param name="format">
+		/// The format of the message.
+		/// </param>
+		/// <param name="arg0">Argument 0.</param>
+/// <param name="arg1">Argument 1.</param>
+/// <param name="arg2">Argument 2.</param>
+		[Conditional("LOGGING")]
+		public static void Verbose<T0, T1, T2>(this ILogger @this, Exception exception, string format, T0 arg0, T1 arg1, T2 arg2)
+		{
+			if (!@this.IsVerboseEnabled)
+			{
+				return;
+			}
+
+			var message = string.Format(CultureInfo.InvariantCulture, format, arg0, arg1, arg2) + exception;
+			@this.Log(LogLevel.Verbose, message);
+		}
+
+		/// <summary>
+		/// Outputs a message with level verbose to the log.
+		/// </summary>
+		/// <typeparam name="T0">The type of parameter T0.</typeparam>
+/// <typeparam name="T1">The type of parameter T1.</typeparam>
+/// <typeparam name="T2">The type of parameter T2.</typeparam>
+/// <typeparam name="T3">The type of parameter T3.</typeparam>
+		/// <param name="this">
+		/// The <see cref="ILogger"/> against which to log.
+		/// </param>
+		/// <param name="format">
+		/// The format of the message.
+		/// </param>
+		/// <param name="arg0">Argument 0.</param>
+/// <param name="arg1">Argument 1.</param>
+/// <param name="arg2">Argument 2.</param>
+/// <param name="arg3">Argument 3.</param>
+		[Conditional("LOGGING")]
+		public static void Verbose<T0, T1, T2, T3>(this ILogger @this, string format, T0 arg0, T1 arg1, T2 arg2, T3 arg3)
+		{
+			if (!@this.IsVerboseEnabled)
+			{
+				return;
+			}
+
+			var message = string.Format(CultureInfo.InvariantCulture, format, arg0, arg1, arg2, arg3);
+			@this.Log(LogLevel.Verbose, message);
+		}
+
+		/// <summary>
+		/// Outputs a message with level verbose to the log, along with the details of an exception.
+		/// </summary>
+		/// <typeparam name="T0">The type of parameter T0.</typeparam>
+/// <typeparam name="T1">The type of parameter T1.</typeparam>
+/// <typeparam name="T2">The type of parameter T2.</typeparam>
+/// <typeparam name="T3">The type of parameter T3.</typeparam>
+		/// <param name="this">
+		/// The <see cref="ILogger"/> against which to log.
+		/// </param>
+		/// <param name="exception">
+		/// The exception to include in the output.
+		/// </param>
+		/// <param name="format">
+		/// The format of the message.
+		/// </param>
+		/// <param name="arg0">Argument 0.</param>
+/// <param name="arg1">Argument 1.</param>
+/// <param name="arg2">Argument 2.</param>
+/// <param name="arg3">Argument 3.</param>
+		[Conditional("LOGGING")]
+		public static void Verbose<T0, T1, T2, T3>(this ILogger @this, Exception exception, string format, T0 arg0, T1 arg1, T2 arg2, T3 arg3)
+		{
+			if (!@this.IsVerboseEnabled)
+			{
+				return;
+			}
+
+			var message = string.Format(CultureInfo.InvariantCulture, format, arg0, arg1, arg2, arg3) + exception;
+			@this.Log(LogLevel.Verbose, message);
+		}
+
+		/// <summary>
+		/// Outputs a message with level verbose to the log.
+		/// </summary>
+		/// <typeparam name="T0">The type of parameter T0.</typeparam>
+/// <typeparam name="T1">The type of parameter T1.</typeparam>
+/// <typeparam name="T2">The type of parameter T2.</typeparam>
+/// <typeparam name="T3">The type of parameter T3.</typeparam>
+/// <typeparam name="T4">The type of parameter T4.</typeparam>
+		/// <param name="this">
+		/// The <see cref="ILogger"/> against which to log.
+		/// </param>
+		/// <param name="format">
+		/// The format of the message.
+		/// </param>
+		/// <param name="arg0">Argument 0.</param>
+/// <param name="arg1">Argument 1.</param>
+/// <param name="arg2">Argument 2.</param>
+/// <param name="arg3">Argument 3.</param>
+/// <param name="arg4">Argument 4.</param>
+		[Conditional("LOGGING")]
+		public static void Verbose<T0, T1, T2, T3, T4>(this ILogger @this, string format, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4)
+		{
+			if (!@this.IsVerboseEnabled)
+			{
+				return;
+			}
+
+			var message = string.Format(CultureInfo.InvariantCulture, format, arg0, arg1, arg2, arg3, arg4);
+			@this.Log(LogLevel.Verbose, message);
+		}
+
+		/// <summary>
+		/// Outputs a message with level verbose to the log, along with the details of an exception.
+		/// </summary>
+		/// <typeparam name="T0">The type of parameter T0.</typeparam>
+/// <typeparam name="T1">The type of parameter T1.</typeparam>
+/// <typeparam name="T2">The type of parameter T2.</typeparam>
+/// <typeparam name="T3">The type of parameter T3.</typeparam>
+/// <typeparam name="T4">The type of parameter T4.</typeparam>
+		/// <param name="this">
+		/// The <see cref="ILogger"/> against which to log.
+		/// </param>
+		/// <param name="exception">
+		/// The exception to include in the output.
+		/// </param>
+		/// <param name="format">
+		/// The format of the message.
+		/// </param>
+		/// <param name="arg0">Argument 0.</param>
+/// <param name="arg1">Argument 1.</param>
+/// <param name="arg2">Argument 2.</param>
+/// <param name="arg3">Argument 3.</param>
+/// <param name="arg4">Argument 4.</param>
+		[Conditional("LOGGING")]
+		public static void Verbose<T0, T1, T2, T3, T4>(this ILogger @this, Exception exception, string format, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4)
+		{
+			if (!@this.IsVerboseEnabled)
+			{
+				return;
+			}
+
+			var message = string.Format(CultureInfo.InvariantCulture, format, arg0, arg1, arg2, arg3, arg4) + exception;
+			@this.Log(LogLevel.Verbose, message);
+		}
+
+		/// <summary>
+		/// Outputs a message with level verbose to the log.
+		/// </summary>
+		/// <typeparam name="T0">The type of parameter T0.</typeparam>
+/// <typeparam name="T1">The type of parameter T1.</typeparam>
+/// <typeparam name="T2">The type of parameter T2.</typeparam>
+/// <typeparam name="T3">The type of parameter T3.</typeparam>
+/// <typeparam name="T4">The type of parameter T4.</typeparam>
+/// <typeparam name="T5">The type of parameter T5.</typeparam>
+		/// <param name="this">
+		/// The <see cref="ILogger"/> against which to log.
+		/// </param>
+		/// <param name="format">
+		/// The format of the message.
+		/// </param>
+		/// <param name="arg0">Argument 0.</param>
+/// <param name="arg1">Argument 1.</param>
+/// <param name="arg2">Argument 2.</param>
+/// <param name="arg3">Argument 3.</param>
+/// <param name="arg4">Argument 4.</param>
+/// <param name="arg5">Argument 5.</param>
+		[Conditional("LOGGING")]
+		public static void Verbose<T0, T1, T2, T3, T4, T5>(this ILogger @this, string format, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5)
+		{
+			if (!@this.IsVerboseEnabled)
+			{
+				return;
+			}
+
+			var message = string.Format(CultureInfo.InvariantCulture, format, arg0, arg1, arg2, arg3, arg4, arg5);
+			@this.Log(LogLevel.Verbose, message);
+		}
+
+		/// <summary>
+		/// Outputs a message with level verbose to the log, along with the details of an exception.
+		/// </summary>
+		/// <typeparam name="T0">The type of parameter T0.</typeparam>
+/// <typeparam name="T1">The type of parameter T1.</typeparam>
+/// <typeparam name="T2">The type of parameter T2.</typeparam>
+/// <typeparam name="T3">The type of parameter T3.</typeparam>
+/// <typeparam name="T4">The type of parameter T4.</typeparam>
+/// <typeparam name="T5">The type of parameter T5.</typeparam>
+		/// <param name="this">
+		/// The <see cref="ILogger"/> against which to log.
+		/// </param>
+		/// <param name="exception">
+		/// The exception to include in the output.
+		/// </param>
+		/// <param name="format">
+		/// The format of the message.
+		/// </param>
+		/// <param name="arg0">Argument 0.</param>
+/// <param name="arg1">Argument 1.</param>
+/// <param name="arg2">Argument 2.</param>
+/// <param name="arg3">Argument 3.</param>
+/// <param name="arg4">Argument 4.</param>
+/// <param name="arg5">Argument 5.</param>
+		[Conditional("LOGGING")]
+		public static void Verbose<T0, T1, T2, T3, T4, T5>(this ILogger @this, Exception exception, string format, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5)
+		{
+			if (!@this.IsVerboseEnabled)
+			{
+				return;
+			}
+
+			var message = string.Format(CultureInfo.InvariantCulture, format, arg0, arg1, arg2, arg3, arg4, arg5) + exception;
+			@this.Log(LogLevel.Verbose, message);
+		}
+
+		/// <summary>
+		/// Outputs a message with level verbose to the log.
+		/// </summary>
+		/// <typeparam name="T0">The type of parameter T0.</typeparam>
+/// <typeparam name="T1">The type of parameter T1.</typeparam>
+/// <typeparam name="T2">The type of parameter T2.</typeparam>
+/// <typeparam name="T3">The type of parameter T3.</typeparam>
+/// <typeparam name="T4">The type of parameter T4.</typeparam>
+/// <typeparam name="T5">The type of parameter T5.</typeparam>
+/// <typeparam name="T6">The type of parameter T6.</typeparam>
+		/// <param name="this">
+		/// The <see cref="ILogger"/> against which to log.
+		/// </param>
+		/// <param name="format">
+		/// The format of the message.
+		/// </param>
+		/// <param name="arg0">Argument 0.</param>
+/// <param name="arg1">Argument 1.</param>
+/// <param name="arg2">Argument 2.</param>
+/// <param name="arg3">Argument 3.</param>
+/// <param name="arg4">Argument 4.</param>
+/// <param name="arg5">Argument 5.</param>
+/// <param name="arg6">Argument 6.</param>
+		[Conditional("LOGGING")]
+		public static void Verbose<T0, T1, T2, T3, T4, T5, T6>(this ILogger @this, string format, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6)
+		{
+			if (!@this.IsVerboseEnabled)
+			{
+				return;
+			}
+
+			var message = string.Format(CultureInfo.InvariantCulture, format, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+			@this.Log(LogLevel.Verbose, message);
+		}
+
+		/// <summary>
+		/// Outputs a message with level verbose to the log, along with the details of an exception.
+		/// </summary>
+		/// <typeparam name="T0">The type of parameter T0.</typeparam>
+/// <typeparam name="T1">The type of parameter T1.</typeparam>
+/// <typeparam name="T2">The type of parameter T2.</typeparam>
+/// <typeparam name="T3">The type of parameter T3.</typeparam>
+/// <typeparam name="T4">The type of parameter T4.</typeparam>
+/// <typeparam name="T5">The type of parameter T5.</typeparam>
+/// <typeparam name="T6">The type of parameter T6.</typeparam>
+		/// <param name="this">
+		/// The <see cref="ILogger"/> against which to log.
+		/// </param>
+		/// <param name="exception">
+		/// The exception to include in the output.
+		/// </param>
+		/// <param name="format">
+		/// The format of the message.
+		/// </param>
+		/// <param name="arg0">Argument 0.</param>
+/// <param name="arg1">Argument 1.</param>
+/// <param name="arg2">Argument 2.</param>
+/// <param name="arg3">Argument 3.</param>
+/// <param name="arg4">Argument 4.</param>
+/// <param name="arg5">Argument 5.</param>
+/// <param name="arg6">Argument 6.</param>
+		[Conditional("LOGGING")]
+		public static void Verbose<T0, T1, T2, T3, T4, T5, T6>(this ILogger @this, Exception exception, string format, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6)
+		{
+			if (!@this.IsVerboseEnabled)
+			{
+				return;
+			}
+
+			var message = string.Format(CultureInfo.InvariantCulture, format, arg0, arg1, arg2, arg3, arg4, arg5, arg6) + exception;
+			@this.Log(LogLevel.Verbose, message);
+		}
+
+		/// <summary>
+		/// Outputs a message with level verbose to the log.
+		/// </summary>
+		/// <typeparam name="T0">The type of parameter T0.</typeparam>
+/// <typeparam name="T1">The type of parameter T1.</typeparam>
+/// <typeparam name="T2">The type of parameter T2.</typeparam>
+/// <typeparam name="T3">The type of parameter T3.</typeparam>
+/// <typeparam name="T4">The type of parameter T4.</typeparam>
+/// <typeparam name="T5">The type of parameter T5.</typeparam>
+/// <typeparam name="T6">The type of parameter T6.</typeparam>
+/// <typeparam name="T7">The type of parameter T7.</typeparam>
+		/// <param name="this">
+		/// The <see cref="ILogger"/> against which to log.
+		/// </param>
+		/// <param name="format">
+		/// The format of the message.
+		/// </param>
+		/// <param name="arg0">Argument 0.</param>
+/// <param name="arg1">Argument 1.</param>
+/// <param name="arg2">Argument 2.</param>
+/// <param name="arg3">Argument 3.</param>
+/// <param name="arg4">Argument 4.</param>
+/// <param name="arg5">Argument 5.</param>
+/// <param name="arg6">Argument 6.</param>
+/// <param name="arg7">Argument 7.</param>
+		[Conditional("LOGGING")]
+		public static void Verbose<T0, T1, T2, T3, T4, T5, T6, T7>(this ILogger @this, string format, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7)
+		{
+			if (!@this.IsVerboseEnabled)
+			{
+				return;
+			}
+
+			var message = string.Format(CultureInfo.InvariantCulture, format, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+			@this.Log(LogLevel.Verbose, message);
+		}
+
+		/// <summary>
+		/// Outputs a message with level verbose to the log, along with the details of an exception.
+		/// </summary>
+		/// <typeparam name="T0">The type of parameter T0.</typeparam>
+/// <typeparam name="T1">The type of parameter T1.</typeparam>
+/// <typeparam name="T2">The type of parameter T2.</typeparam>
+/// <typeparam name="T3">The type of parameter T3.</typeparam>
+/// <typeparam name="T4">The type of parameter T4.</typeparam>
+/// <typeparam name="T5">The type of parameter T5.</typeparam>
+/// <typeparam name="T6">The type of parameter T6.</typeparam>
+/// <typeparam name="T7">The type of parameter T7.</typeparam>
+		/// <param name="this">
+		/// The <see cref="ILogger"/> against which to log.
+		/// </param>
+		/// <param name="exception">
+		/// The exception to include in the output.
+		/// </param>
+		/// <param name="format">
+		/// The format of the message.
+		/// </param>
+		/// <param name="arg0">Argument 0.</param>
+/// <param name="arg1">Argument 1.</param>
+/// <param name="arg2">Argument 2.</param>
+/// <param name="arg3">Argument 3.</param>
+/// <param name="arg4">Argument 4.</param>
+/// <param name="arg5">Argument 5.</param>
+/// <param name="arg6">Argument 6.</param>
+/// <param name="arg7">Argument 7.</param>
+		[Conditional("LOGGING")]
+		public static void Verbose<T0, T1, T2, T3, T4, T5, T6, T7>(this ILogger @this, Exception exception, string format, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7)
+		{
+			if (!@this.IsVerboseEnabled)
+			{
+				return;
+			}
+
+			var message = string.Format(CultureInfo.InvariantCulture, format, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) + exception;
+			@this.Log(LogLevel.Verbose, message);
+		}
+
+		/// <summary>
+		/// Outputs a message with level verbose to the log.
+		/// </summary>
+		/// <typeparam name="T0">The type of parameter T0.</typeparam>
+/// <typeparam name="T1">The type of parameter T1.</typeparam>
+/// <typeparam name="T2">The type of parameter T2.</typeparam>
+/// <typeparam name="T3">The type of parameter T3.</typeparam>
+/// <typeparam name="T4">The type of parameter T4.</typeparam>
+/// <typeparam name="T5">The type of parameter T5.</typeparam>
+/// <typeparam name="T6">The type of parameter T6.</typeparam>
+/// <typeparam name="T7">The type of parameter T7.</typeparam>
+/// <typeparam name="T8">The type of parameter T8.</typeparam>
+		/// <param name="this">
+		/// The <see cref="ILogger"/> against which to log.
+		/// </param>
+		/// <param name="format">
+		/// The format of the message.
+		/// </param>
+		/// <param name="arg0">Argument 0.</param>
+/// <param name="arg1">Argument 1.</param>
+/// <param name="arg2">Argument 2.</param>
+/// <param name="arg3">Argument 3.</param>
+/// <param name="arg4">Argument 4.</param>
+/// <param name="arg5">Argument 5.</param>
+/// <param name="arg6">Argument 6.</param>
+/// <param name="arg7">Argument 7.</param>
+/// <param name="arg8">Argument 8.</param>
+		[Conditional("LOGGING")]
+		public static void Verbose<T0, T1, T2, T3, T4, T5, T6, T7, T8>(this ILogger @this, string format, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8)
+		{
+			if (!@this.IsVerboseEnabled)
+			{
+				return;
+			}
+
+			var message = string.Format(CultureInfo.InvariantCulture, format, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+			@this.Log(LogLevel.Verbose, message);
+		}
+
+		/// <summary>
+		/// Outputs a message with level verbose to the log, along with the details of an exception.
+		/// </summary>
+		/// <typeparam name="T0">The type of parameter T0.</typeparam>
+/// <typeparam name="T1">The type of parameter T1.</typeparam>
+/// <typeparam name="T2">The type of parameter T2.</typeparam>
+/// <typeparam name="T3">The type of parameter T3.</typeparam>
+/// <typeparam name="T4">The type of parameter T4.</typeparam>
+/// <typeparam name="T5">The type of parameter T5.</typeparam>
+/// <typeparam name="T6">The type of parameter T6.</typeparam>
+/// <typeparam name="T7">The type of parameter T7.</typeparam>
+/// <typeparam name="T8">The type of parameter T8.</typeparam>
+		/// <param name="this">
+		/// The <see cref="ILogger"/> against which to log.
+		/// </param>
+		/// <param name="exception">
+		/// The exception to include in the output.
+		/// </param>
+		/// <param name="format">
+		/// The format of the message.
+		/// </param>
+		/// <param name="arg0">Argument 0.</param>
+/// <param name="arg1">Argument 1.</param>
+/// <param name="arg2">Argument 2.</param>
+/// <param name="arg3">Argument 3.</param>
+/// <param name="arg4">Argument 4.</param>
+/// <param name="arg5">Argument 5.</param>
+/// <param name="arg6">Argument 6.</param>
+/// <param name="arg7">Argument 7.</param>
+/// <param name="arg8">Argument 8.</param>
+		[Conditional("LOGGING")]
+		public static void Verbose<T0, T1, T2, T3, T4, T5, T6, T7, T8>(this ILogger @this, Exception exception, string format, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8)
+		{
+			if (!@this.IsVerboseEnabled)
+			{
+				return;
+			}
+
+			var message = string.Format(CultureInfo.InvariantCulture, format, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8) + exception;
+			@this.Log(LogLevel.Verbose, message);
+		}
+
+		/// <summary>
+		/// Outputs a message with level verbose to the log.
+		/// </summary>
+		/// <typeparam name="T0">The type of parameter T0.</typeparam>
+/// <typeparam name="T1">The type of parameter T1.</typeparam>
+/// <typeparam name="T2">The type of parameter T2.</typeparam>
+/// <typeparam name="T3">The type of parameter T3.</typeparam>
+/// <typeparam name="T4">The type of parameter T4.</typeparam>
+/// <typeparam name="T5">The type of parameter T5.</typeparam>
+/// <typeparam name="T6">The type of parameter T6.</typeparam>
+/// <typeparam name="T7">The type of parameter T7.</typeparam>
+/// <typeparam name="T8">The type of parameter T8.</typeparam>
+/// <typeparam name="T9">The type of parameter T9.</typeparam>
+		/// <param name="this">
+		/// The <see cref="ILogger"/> against which to log.
+		/// </param>
+		/// <param name="format">
+		/// The format of the message.
+		/// </param>
+		/// <param name="arg0">Argument 0.</param>
+/// <param name="arg1">Argument 1.</param>
+/// <param name="arg2">Argument 2.</param>
+/// <param name="arg3">Argument 3.</param>
+/// <param name="arg4">Argument 4.</param>
+/// <param name="arg5">Argument 5.</param>
+/// <param name="arg6">Argument 6.</param>
+/// <param name="arg7">Argument 7.</param>
+/// <param name="arg8">Argument 8.</param>
+/// <param name="arg9">Argument 9.</param>
+		[Conditional("LOGGING")]
+		public static void Verbose<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>(this ILogger @this, string format, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8, T9 arg9)
+		{
+			if (!@this.IsVerboseEnabled)
+			{
+				return;
+			}
+
+			var message = string.Format(CultureInfo.InvariantCulture, format, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
+			@this.Log(LogLevel.Verbose, message);
+		}
+
+		/// <summary>
+		/// Outputs a message with level verbose to the log, along with the details of an exception.
+		/// </summary>
+		/// <typeparam name="T0">The type of parameter T0.</typeparam>
+/// <typeparam name="T1">The type of parameter T1.</typeparam>
+/// <typeparam name="T2">The type of parameter T2.</typeparam>
+/// <typeparam name="T3">The type of parameter T3.</typeparam>
+/// <typeparam name="T4">The type of parameter T4.</typeparam>
+/// <typeparam name="T5">The type of parameter T5.</typeparam>
+/// <typeparam name="T6">The type of parameter T6.</typeparam>
+/// <typeparam name="T7">The type of parameter T7.</typeparam>
+/// <typeparam name="T8">The type of parameter T8.</typeparam>
+/// <typeparam name="T9">The type of parameter T9.</typeparam>
+		/// <param name="this">
+		/// The <see cref="ILogger"/> against which to log.
+		/// </param>
+		/// <param name="exception">
+		/// The exception to include in the output.
+		/// </param>
+		/// <param name="format">
+		/// The format of the message.
+		/// </param>
+		/// <param name="arg0">Argument 0.</param>
+/// <param name="arg1">Argument 1.</param>
+/// <param name="arg2">Argument 2.</param>
+/// <param name="arg3">Argument 3.</param>
+/// <param name="arg4">Argument 4.</param>
+/// <param name="arg5">Argument 5.</param>
+/// <param name="arg6">Argument 6.</param>
+/// <param name="arg7">Argument 7.</param>
+/// <param name="arg8">Argument 8.</param>
+/// <param name="arg9">Argument 9.</param>
+		[Conditional("LOGGING")]
+		public static void Verbose<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>(this ILogger @this, Exception exception, string format, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8, T9 arg9)
+		{
+			if (!@this.IsVerboseEnabled)
+			{
+				return;
+			}
+
+			var message = string.Format(CultureInfo.InvariantCulture, format, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9) + exception;
+			@this.Log(LogLevel.Verbose, message);
+		}
+
+		/// <summary>
 		/// Outputs a message with level debug to the log.
 		/// </summary>
 		/// <param name="this">
