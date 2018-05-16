@@ -1,6 +1,7 @@
 ﻿namespace Genesis.Logging
 {
     using System;
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Reactive.Linq;
     using System.Reactive.Subjects;
@@ -19,7 +20,7 @@
         /// </summary>
         public DefaultLoggerService()
         {
-            this.loggers = new Dictionary<string, ILogger>();
+            this.loggers = new ConcurrentDictionary<string, ILogger>();
             this.entries = new Subject<LogEntry>();
         }
 
