@@ -102,7 +102,7 @@
             Assert.Equal(this.GetType().FullName, logEntry.Name);
             Assert.Equal(level, logEntry.Level);
             Assert.Equal(Environment.CurrentManagedThreadId, logEntry.ThreadId);
-            Assert.True(logEntry.Message.StartsWith(message));
+            Assert.StartsWith(message, logEntry.Message);
         }
 
         [Theory]
@@ -148,7 +148,7 @@
             Assert.Equal(this.GetType().FullName, logEntry.Name);
             Assert.Equal(level, logEntry.Level);
             Assert.Equal(Environment.CurrentManagedThreadId, logEntry.ThreadId);
-            Assert.True(logEntry.Message.StartsWith(string.Format(format, args)));
+            Assert.StartsWith(string.Format(format, args), logEntry.Message);
         }
 
         [Theory]
@@ -191,7 +191,7 @@
             Assert.Equal(this.GetType().FullName, logEntry.Name);
             Assert.Equal(level, logEntry.Level);
             Assert.Equal(Environment.CurrentManagedThreadId, logEntry.ThreadId);
-            Assert.True(logEntry.Message.StartsWith(string.Format(format, args) + "System.Exception: Circular logic detected."));
+            Assert.StartsWith(string.Format(format, args) + "System.Exception: Circular logic detected.", logEntry.Message);
         }
 
         [Fact]
