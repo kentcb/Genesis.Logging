@@ -57,7 +57,7 @@
             Assert.Equal("Expected 2", entries[1].Message);
             Assert.Equal("Expected 3", entries[2].Message);
             Assert.Equal("Expected 4", entries[3].Message);
-            Assert.True(entries[4].Message.StartsWith("Expected 5 ["));
+            Assert.StartsWith("Expected 5 [", entries[4].Message);
             Assert.Equal("Expected 6", entries[5].Message);
             Assert.Equal("Expected 7", entries[6].Message);
         }
