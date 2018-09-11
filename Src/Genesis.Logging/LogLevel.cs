@@ -6,33 +6,38 @@
     public enum LogLevel
     {
         /// <summary>
+        /// A verbose debug message.
+        /// </summary>
+        Verbose,
+        
+        /// <summary>
         /// A debug message.
         /// </summary>
-        Debug = 0,
+        Debug,
 
         /// <summary>
         /// An informational message.
         /// </summary>
-        Info = 1,
+        Info,
 
         /// <summary>
         /// A performance message.
         /// </summary>
-        Perf = 2,
+        Perf,
 
         /// <summary>
         /// A warning message.
         /// </summary>
-        Warn = 3,
+        Warn,
 
         /// <summary>
         /// An error message.
         /// </summary>
-        Error = 4,
+        Error,
 
         /// <summary>
         /// All levels disabled.
         /// </summary>
-        None = 5
+        None
     }
 }

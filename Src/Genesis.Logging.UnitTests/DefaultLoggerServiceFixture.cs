@@ -11,7 +11,7 @@
         public void threshold_can_be_retrieved()
         {
             var sut = new DefaultLoggerService();
-            Assert.Equal(LogLevel.Debug, sut.Threshold);
+            Assert.Equal(LogLevel.Verbose, sut.Threshold);
         }
 
         [Fact]
@@ -64,6 +64,16 @@
 
 #endif
 
+        [Fact]
+        public void is_verbose_enabled_returns_correct_value()
+        {
+            var sut = new DefaultLoggerService();
+
+            Assert.True(sut.IsVerboseEnabled);
+            sut.Threshold = LogLevel.Debug;
+            Assert.False(sut.IsVerboseEnabled);
+        }
+        
         [Fact]
         public void is_debug_enabled_returns_correct_value()
         {

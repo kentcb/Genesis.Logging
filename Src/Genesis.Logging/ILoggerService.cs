@@ -15,6 +15,14 @@
             get;
             set;
         }
+        
+        /// <summary>
+        /// Gets a value indicating whether the <see cref="LogLevel.Verbose"/> level is enabled.
+        /// </summary>
+        bool IsVerboseEnabled
+        {
+            get;
+        }
 
         /// <summary>
         /// Gets a value indicating whether the <see cref="LogLevel.Debug"/> level is enabled.

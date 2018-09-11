@@ -38,6 +38,7 @@ namespace Genesis.Logging
 <#
 		var methodNames = new[]
 		{
+			"Verbose",
 			"Debug",
 			"Info",
 			"Warn",

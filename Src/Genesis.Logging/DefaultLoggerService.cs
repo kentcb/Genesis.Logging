@@ -1,6 +1,7 @@
 ﻿namespace Genesis.Logging
 {
     using System;
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Reactive.Linq;
     using System.Reactive.Subjects;
@@ -19,7 +20,7 @@
         /// </summary>
         public DefaultLoggerService()
         {
-            this.loggers = new Dictionary<string, ILogger>();
+            this.loggers = new ConcurrentDictionary<string, ILogger>();
             this.entries = new Subject<LogEntry>();
         }
 
@@ -29,6 +30,9 @@
             get { return this.threshold; }
             set { this.threshold = value; }
         }
+
+        /// <inheritdoc />
+        public bool IsVerboseEnabled => this.threshold <= LogLevel.Verbose;
 
         /// <inheritdoc />
         public bool IsDebugEnabled => this.threshold <= LogLevel.Debug;
@@ -87,6 +91,8 @@
             }
 
             public string Name => this.name;
+
+            public bool IsVerboseEnabled => this.owner.IsVerboseEnabled;
 
             public bool IsDebugEnabled => this.owner.IsDebugEnabled;
 
