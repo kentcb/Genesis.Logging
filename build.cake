@@ -2,8 +2,8 @@ using System;
 
 // Parameters.
 var projectName = "Genesis.Logging";
-var semanticVersion = "3.0.0";
-var version = semanticVersion + ".0";
+var semanticVersion = "3.0.0.1";
+var version = semanticVersion;
 var configuration = EnvironmentVariable("CONFIGURATION") ?? "Release";
 var nugetSource = "https://www.nuget.org/api/v2/package";
 
