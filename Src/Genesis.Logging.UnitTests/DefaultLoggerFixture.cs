@@ -16,6 +16,16 @@
         }
 
         [Fact]
+        public void is_verbose_enabled_returns_correct_value()
+        {
+            var service = new DefaultLoggerService();
+            var sut = service.GetLogger(this.GetType());
+
+            Assert.True(sut.IsVerboseEnabled);
+            service.Threshold = LogLevel.Debug;
+            Assert.False(sut.IsVerboseEnabled);
+        }
+        [Fact]
         public void is_debug_enabled_returns_correct_value()
         {
             var service = new DefaultLoggerService();
@@ -73,6 +83,8 @@
 #if LOGGING
 
         [Theory]
+        [InlineData(LogLevel.Verbose, "A message.")]
+        [InlineData(LogLevel.Verbose, "A different message.")]
         [InlineData(LogLevel.Debug, "A message.")]
         [InlineData(LogLevel.Debug, "A different message.")]
         [InlineData(LogLevel.Info, "A message.")]
@@ -106,6 +118,8 @@
         }
 
         [Theory]
+        [InlineData(LogLevel.Verbose, "A {0}.", new object[] { "message" })]
+        [InlineData(LogLevel.Verbose, "A {0} from {1} containing {2}.", new object[] { "message", "me", 42 })]
         [InlineData(LogLevel.Debug, "A {0}.", new object[] { "message" })]
         [InlineData(LogLevel.Debug, "A {0} from {1} containing {2}.", new object[] { "message", "me", 42 })]
         [InlineData(LogLevel.Info, "A {0}.", new object[] { "message" })]
@@ -152,6 +166,8 @@
         }
 
         [Theory]
+        [InlineData(LogLevel.Verbose, "A {0}.", new object[] { "message" })]
+        [InlineData(LogLevel.Verbose, "A {0} from {1} containing {2}.", new object[] { "message", "me", 42 })]
         [InlineData(LogLevel.Debug, "A {0}.", new object[] { "message" })]
         [InlineData(LogLevel.Debug, "A {0} from {1} containing {2}.", new object[] { "message", "me", 42 })]
         [InlineData(LogLevel.Info, "A {0}.", new object[] { "message" })]
